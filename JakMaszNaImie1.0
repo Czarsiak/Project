@@ -1,0 +1,36 @@
+import javax.swing.JOptionPane;
+
+public class IleLat {
+
+	public static void main(String[] args) {
+		String imie = JOptionPane.showInputDialog("Jak się nazywasz?");
+		String podanyWiek = JOptionPane.showInputDialog("Ile masz lat?");
+
+		int wiek = -1; // zaslepka
+		try {
+			wiek = Integer.parseInt(podanyWiek);
+		} catch (NumberFormatException e) {
+			System.out.println("Niepoprawny format liczby");
+		}
+
+		System.out.println("Witaj " + imie + " (" + wiek + ")");
+		if (wiek < 18) {
+			System.out.println("Jesteś niepełnoletni");
+		} else if(wiek > 65) {
+			System.out.println("Jesteś emerytem");
+		} else {
+			System.out.println("Jesteś całkowicie normalny");
+		}
+		
+		// Równoważne logicznie, ale mniej przejrzyste. Tak nie robimy:
+		if(wiek >= 18) {
+			if(wiek > 65) {
+				System.out.println("Jesteś emerytem");
+			} else {
+				System.out.println("Jesteś całkowicie normalny");
+			}
+		} else {
+			System.out.println("Jesteś niepełnoletni");
+		}
+	}
+}
