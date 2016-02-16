@@ -1,0 +1,29 @@
+import javax.swing.JOptionPane;
+
+public class WypiszDzienTygodnia2 {
+	
+	static String nazwaDniaTygodnia(int nr) {
+		switch(nr) {
+		case 1 : return "poniedziałek";
+		case 2 : return "wtorek";
+		case 3 : return "środa";
+		case 4 : return "czwartek";
+		case 5 : return "piątek";
+		case 6 : return "sobota";
+		case 7 : return "niedziela";
+		default: return "to nie jest numer dnia tygodnia";
+		}
+	}
+
+	public static void main(String[] args) {
+		String napis = JOptionPane.showInputDialog("Podaj nr dnia tygodnia");
+
+		try {
+			int nr = Integer.parseInt(napis);
+			String nazwa = nazwaDniaTygodnia(nr);
+			System.out.println(nazwa);
+		} catch (NumberFormatException e) {
+			System.out.println("Niepoprawny format liczby");
+		}
+	}
+}
