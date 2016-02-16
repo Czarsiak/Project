@@ -1,0 +1,1 @@
+Zbior prostych klas
