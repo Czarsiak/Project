@@ -1,0 +1,78 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class RysowanieInteraktywne2 {
+
+	public static void main(String[] args) {
+		JFrame okno = new JFrame("Moje rysunki");
+		okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		okno.setSize(800, 400);
+		okno.setLayout(new BoxLayout(okno.getContentPane(), BoxLayout.Y_AXIS));
+		
+		MojPanel panel = new MojPanel();
+		okno.add(panel);
+		
+		JPanel panelGuzikowy = new JPanel();
+		panelGuzikowy.setLayout(new BoxLayout(panelGuzikowy, BoxLayout.X_AXIS));
+		
+		JButton lewy = new JButton("<-");
+		JButton prawy = new JButton("->");
+		panelGuzikowy.add(lewy);
+		panelGuzikowy.add(prawy);
+		okno.add(panelGuzikowy);
+		
+		lewy.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel.wLewo();
+				panel.repaint();
+			}
+		});
+		
+		prawy.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel.wPrawo();
+				panel.repaint();
+			}
+		});
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				okno.setVisible(true);
+			}
+		});
+	}
+	
+	static class MojPanel extends JPanel {
+		static final int LIMIT = 7000;
+		int x = 0;
+		
+		public void wPrawo() {
+			if(x < LIMIT)
+				x += 10;
+		}
+		
+		public void wLewo() {
+			if(x > 10)
+				x -= 10;
+		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.setColor(Color.RED);
+			g.fillOval(x, 100, 50, 50);
+		}
+	}
+}
