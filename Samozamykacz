@@ -1,0 +1,36 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
+public class HelloWorld_Timer {
+
+	public static void main(String[] args) {
+		JFrame okno = new JFrame();
+		okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		okno.setSize(300, 150);
+		
+		JLabel napis = new JLabel("Hello world");
+		napis.setForeground(Color.RED);
+		napis.setFont(new Font("Utopia", Font.BOLD, 20));
+		napis.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		okno.add(napis);
+		
+		okno.setVisible(true);
+		
+		Timer zamykacz = new Timer(3000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				okno.dispose();
+			}
+		});
+		zamykacz.start();
+		System.out.println("Koniec main");
+	}
+}
